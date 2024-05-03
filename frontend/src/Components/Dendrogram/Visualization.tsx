@@ -3,8 +3,45 @@ import coalitionData from "../../data/coalition.json";
 import * as React from "react";
 import { useEffect, useRef } from "react";
 
+interface ParticipationStats {
+  sessions_attended: number;
+  total_sessions: number;
+}
+
+interface VoteStats {
+  for: number;
+  against: number;
+  abstained: number;
+  missed: number;
+}
+
+interface Minister {
+  title: string;
+  name: string;
+  party: string;
+  stats: {
+    votes: VoteStats;
+    participation: ParticipationStats;
+  };
+}
+
+interface PrimeMinister {
+  name: string;
+  party: string;
+}
+
+interface Government {
+  prime_minister: PrimeMinister;
+  ministers: Minister[];
+}
+
+interface HierarchyNode {
+  name: string;
+  children?: HierarchyNode[];
+}
+
 const Visualization: React.FC = () => {
-  const svgRef = React.useRef<SVGSVGElement | null>(null);
+  const svgRef = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
     if (svgRef.current) {
@@ -12,13 +49,28 @@ const Visualization: React.FC = () => {
 
       const width = 800;
       const height = 400;
-      const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
+      // Define the tree layout
       const treeLayout = d3.tree().size([width, height]);
 
-      const root = d3.hierarchy(coalitionData);
+      // Helper function to create a hierarchy
+      const hierarchyData = (data: Government): HierarchyNode => {
+        return {
+          name: data.prime_minister.name, // Root node
+          children: data.ministers.map((minister) => ({
+            name: minister.name,
+            children: [], // Adjust this if ministers have further nested structures
+          })),
+        };
+      };
+
+      // Convert the data to a hierarchy and compute the layout
+      const root = d3.hierarchy(
+        hierarchyData(coalitionData.government) as HierarchyNode
+      );
       treeLayout(root);
 
+      // Draw lines for links
       svg
         .selectAll("line")
         .data(root.links())
@@ -30,6 +82,7 @@ const Visualization: React.FC = () => {
         .attr("y2", (d) => d.target.y)
         .attr("stroke", "black");
 
+      // Draw circles for nodes
       svg
         .selectAll("circle")
         .data(root.descendants())
