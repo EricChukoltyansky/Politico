@@ -1,0 +1,278 @@
+{
+    "government": {
+      "prime_minister": {
+        "name": "Benjamin Netanyahu",
+        "party": "Likud",
+        "stats": {
+          "votes": {
+            "for": 270,
+            "against": 30,
+            "abstained": 15,
+            "missed": 5
+          },
+          "participation": {
+            "sessions_attended": 95,
+            "total_sessions": 100
+          }
+        }
+      },
+      "ministers": [
+        {
+          "title": "Minister of Justice",
+          "name": "Yariv Levin",
+          "party": "Likud",
+          "stats": {
+            "votes": {
+              "for": 200,
+              "against": 50,
+              "abstained": 25,
+              "missed": 15
+            },
+            "participation": {
+              "sessions_attended": 90,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister for the Development of the Negev and the Galilee and National Resilience",
+          "name": "Yitzhak Wasserlauf",
+          "party": "Otzma Yehudit",
+          "stats": {
+            "votes": {
+              "for": 180,
+              "against": 70,
+              "abstained": 30,
+              "missed": 10
+            },
+            "participation": {
+              "sessions_attended": 88,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister of Diaspora Affairs",
+          "name": "Amichai Chikli",
+          "party": "Likud",
+          "stats": {
+            "votes": {
+              "for": 210,
+              "against": 40,
+              "abstained": 20,
+              "missed": 20
+            },
+            "participation": {
+              "sessions_attended": 92,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister for Social Equality",
+          "name": "May Golan",
+          "party": "Likud",
+          "stats": {
+            "votes": {
+              "for": 195,
+              "against": 45,
+              "abstained": 30,
+              "missed": 20
+            },
+            "participation": {
+              "sessions_attended": 85,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister of Housing and Construction",
+          "name": "Yitzhak Goldknopf",
+          "party": "United Torah Judaism",
+          "stats": {
+            "votes": {
+              "for": 170,
+              "against": 80,
+              "abstained": 25,
+              "missed": 15
+            },
+            "participation": {
+              "sessions_attended": 90,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister in the Prime Minister's Office",
+          "name": "Ofir Akunis",
+          "party": "Likud",
+          "stats": {
+            "votes": {
+              "for": 210,
+              "against": 50,
+              "abstained": 15,
+              "missed": 15
+            },
+            "participation": {
+              "sessions_attended": 90,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister of Agriculture and Rural Development",
+          "name": "Avi Dichter",
+          "party": "Likud",
+          "stats": {
+            "votes": {
+              "for": 230,
+              "against": 30,
+              "abstained": 20,
+              "missed": 10
+            },
+            "participation": {
+              "sessions_attended": 96,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister of Aliyah and Integration",
+          "name": "Ofir Sofer",
+          "party": "Religious Zionist Party",
+          "stats": {
+            "votes": {
+              "for": 210,
+              "against": 60,
+              "abstained": 10,
+              "missed": 10
+            },
+            "participation": {
+              "sessions_attended": 95,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister of Communications",
+          "name": "Shlomo Karhi",
+          "party": "Likud",
+          "stats": {
+            "votes": {
+              "for": 220,
+              "against": 40,
+              "abstained": 20,
+              "missed": 10
+            },
+            "participation": {
+              "sessions_attended": 93,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister of Culture and Sport",
+          "name": "Miki Zohar",
+          "party": "Likud",
+          "stats": {
+            "votes": {
+              "for": 210,
+              "against": 30,
+              "abstained": 40,
+              "missed": 10
+            },
+            "participation": {
+              "sessions_attended": 94,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister of National Security",
+          "name": "Itamar Ben-Gvir",
+          "party": "Otzma Yehudit",
+          "stats": {
+            "votes": {
+              "for": 240,
+              "against": 20,
+              "abstained": 20,
+              "missed": 10
+            },
+            "participation": {
+              "sessions_attended": 97,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister of Finance",
+          "name": "Bezalel Smotrich",
+          "party": "Religious Zionist Party",
+          "stats": {
+            "votes": {
+              "for": 250,
+              "against": 30,
+              "abstained": 5,
+              "missed": 5
+            },
+            "participation": {
+              "sessions_attended": 98,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister of Health",
+          "name": "Aryeh Deri",
+          "party": "Shas",
+          "stats": {
+            "votes": {
+              "for": 220,
+              "against": 55,
+              "abstained": 10,
+              "missed": 5
+            },
+            "participation": {
+              "sessions_attended": 96,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister of Education",
+          "name": "Yoav Kisch",
+          "party": "Likud",
+          "stats": {
+            "votes": {
+              "for": 195,
+              "against": 45,
+              "abstained": 30,
+              "missed": 20
+            },
+            "participation": {
+              "sessions_attended": 85,
+              "total_sessions": 100
+            }
+          }
+        },
+        {
+          "title": "Minister of Internal Security",
+          "name": "Orit Strock",
+          "party": "Religious Zionist Party",
+          "stats": {
+            "votes": {
+              "for": 205,
+              "against": 45,
+              "abstained": 30,
+              "missed": 10
+            },
+            "participation": {
+              "sessions_attended": 90,
+              "total_sessions": 100
+            }
+          }
+        }
+      ]
+    }
+  }
+  
