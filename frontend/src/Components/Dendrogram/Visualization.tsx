@@ -1,67 +1,9 @@
-import { hierarchy, tree } from "d3-hierarchy";
+import { hierarchy, cluster, HierarchyNode } from "d3-hierarchy";
 import { select } from "d3-selection";
-import { HierarchyNode } from "d3-hierarchy";
 import coalitionData from "../../data/coalition.json";
 import * as React from "react";
 import { useEffect, useRef } from "react";
-
-// interface VoteStats {
-//   for: number;
-//   against: number;
-//   abstained: number;
-//   missed: number;
-// }
-
-// interface Minister {
-//   title: string;
-//   name: string;
-//   party: string;
-//   stats: {
-//     votes: VoteStats;
-//     participation: ParticipationStats;
-//   };
-// }
-
-// interface ParticipationStats {
-//   sessions_attended: number;
-//   total_sessions: number;
-// }
-
-// interface PrimeMinister {
-//   name: string;
-//   party: string;
-// }
-
-// interface Government {
-//   prime_minister: PrimeMinister;
-//   ministers: Minister[];
-// }
-
-interface MinisterStats {
-  votes: {
-    for: number;
-    against: number;
-    abstained: number;
-    missed: number;
-  };
-  participation: {
-    sessions_attended: number;
-    total_sessions: number;
-  };
-}
-
-interface Minister {
-  name: string;
-  party: string;
-  stats: MinisterStats;
-}
-
-interface Government {
-  prime_minister: {
-    name: string;
-  };
-  ministers: Minister[];
-}
+import { Government } from "./interfaces";
 
 const Visualization: React.FC = () => {
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -70,7 +12,8 @@ const Visualization: React.FC = () => {
     if (svgRef.current) {
       const svgElement = svgRef.current;
       const width = 800;
-      const height = 400;
+      const height = 800;
+      const radius = Math.min(width, height) / 2;
 
       const governmentData = coalitionData.government as Government;
 
@@ -108,12 +51,24 @@ const Visualization: React.FC = () => {
         ],
       };
 
-      const root: HierarchyNode<unknown> = hierarchy(
-        hierarchyData
-      ) as HierarchyNode<unknown>;
+      const root = hierarchy(hierarchyData)
+        .sum((d) => d.children?.length || 0)
+        .sort(
+          (a, b) =>
+            a.height - b.height || a.data.name.localeCompare(b.data.name)
+        ) as HierarchyNode<unknown>;
 
-      const layout = tree().size([width, height]);
+      const layout = cluster()
+        .size([360, radius - 100])
+        .separation((a, b) => (a.parent == b.parent ? 1 : 2) / a.depth);
+
       layout(root);
+
+      root.each((d) => {
+        const angle = ((d.x - 90) / 180) * Math.PI;
+        d.x = radius + d.y * Math.cos(angle);
+        d.y = radius + d.y * Math.sin(angle);
+      });
 
       select(svgElement)
         .selectAll("line")
@@ -135,10 +90,34 @@ const Visualization: React.FC = () => {
         .attr("cy", (d) => d.y || 0)
         .attr("r", 5)
         .attr("fill", "black");
+
+      select(svgElement)
+        .selectAll("text")
+        .data(root.descendants())
+        .enter()
+        .append("text")
+        .attr("x", (d) => d.x || 0)
+        .attr("y", (d) => d.y || 0)
+        .attr("dy", "0.35em")
+        .attr("text-anchor", (d) => (d.x < width / 2 ? "start" : "end"))
+        .attr(
+          "transform",
+          (d) => `rotate(${d.x < width / 2 ? d.x - 90 : d.x + 90})`
+        )
+        .text((d) => d.data.name)
+        .style("font-size", "12px")
+        .style("user-select", "none");
     }
   }, [svgRef]);
 
-  return <svg ref={svgRef} width="800" height="400"></svg>;
+  return (
+    <svg
+      ref={svgRef}
+      width="800"
+      height="800"
+      style={{ transform: "rotate(-90deg)" }}
+    ></svg>
+  );
 };
 
 export default Visualization;
